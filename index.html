@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Octavio Bramajo — Demographer & Epidemiologist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --sand: #f5f0e8; --cream: #faf7f2; --ink: #1a1612; --ink-mid: #4a4540;
+      --ink-light: #8a8278; --terra: #b05c3a; --terra-light: #e8d4c8;
+      --border: #ddd8ce; --serif: 'Lora', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif;
+    }
+    body { background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.7; }
+
+    nav { position: sticky; top: 0; background: rgba(250,247,242,0.94); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border); z-index: 100; padding: 0 2rem; }
+    nav .inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center;
+      justify-content: space-between; height: 56px; }
+    nav .brand { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); text-decoration: none; }
+    nav ul { list-style: none; display: flex; gap: 1.75rem; }
+    nav a { font-size: 0.85rem; color: var(--ink-mid); text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
+    nav a:hover { color: var(--terra); }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+    .label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--terra); margin-bottom: 1.5rem; }
+    h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 400; margin-bottom: 1.25rem; line-height: 1.25; }
+    p { color: var(--ink-mid); margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    header.hero { padding: 5rem 2rem 4rem; border-bottom: 1px solid var(--border); }
+    header.hero .inner { max-width: 960px; margin: 0 auto; display: grid;
+      grid-template-columns: 1fr auto; gap: 3rem; align-items: start; }
+    .hero-text h1 { font-family: var(--serif); font-size: 2.9rem; font-weight: 400;
+      line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .hero-text .tagline { font-size: 1.05rem; color: var(--ink-mid); margin-bottom: 0.5rem; line-height: 1.5; }
+    .hero-text .tagline strong { color: var(--terra); font-weight: 500; }
+    .hero-text .affil { font-size: 0.875rem; color: var(--ink-light); margin-bottom: 1.75rem; }
+    .hero-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .hero-links a { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.4rem 0.9rem;
+      border: 1px solid var(--border); border-radius: 2rem; font-size: 0.82rem; color: var(--ink-mid);
+      text-decoration: none; transition: all 0.2s; background: var(--cream); }
+    .hero-links a:hover { border-color: var(--terra); color: var(--terra); background: var(--terra-light); }
+    .hero-avatar { width: 150px; height: 150px; border-radius: 50%; background: var(--terra-light);
+      display: flex; align-items: center; justify-content: center; font-family: var(--serif);
+      font-size: 2.2rem; color: var(--terra); border: 2px solid var(--border); flex-shrink: 0; }
+
+    .interests-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .interest-card { background: var(--sand); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; }
+    .interest-card .icon { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .interest-card h3 { font-family: var(--serif); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--ink); }
+    .interest-card p { font-size: 0.83rem; color: var(--ink-light); margin: 0; }
+
+    .pub-group-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 600;
+      color: var(--ink); margin: 2rem 0 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+    .pub-item { padding: 1rem 0; border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 46px 1fr; gap: 0.75rem; align-items: start; }
+    .pub-item:last-child { border-bottom: none; }
+    .pub-year { font-size: 0.78rem; color: var(--ink-light); font-weight: 500; padding-top: 0.15rem; }
+    .pub-title { font-family: var(--serif); font-size: 0.97rem; color: var(--ink); margin-bottom: 0.15rem; line-height: 1.4; }
+    .pub-venue { font-size: 0.83rem; color: var(--terra); font-style: italic; }
+    .pub-authors { font-size: 0.8rem; color: var(--ink-light); margin-top: 0.1rem; }
+    .pub-doi { font-size: 0.78rem; margin-top: 0.25rem; }
+    .pub-doi a { color: var(--terra); text-decoration: none; border-bottom: 1px solid var(--terra-light); }
+    .pub-doi a:hover { border-color: var(--terra); }
+    .badge { display: inline-block; font-size: 0.7rem; padding: 0.15rem 0.5rem;
+      border-radius: 2rem; background: var(--terra-light); color: var(--terra);
+      font-weight: 500; margin-left: 0.4rem; vertical-align: middle; }
+    .badge-r { background: #dceee0; color: #3a7a4a; }
+
+    .cv-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.75rem;
+      background: var(--terra); color: white; border-radius: 4px; text-decoration: none;
+      font-size: 0.9rem; font-weight: 500; transition: opacity 0.2s; margin-top: 1rem; }
+    .cv-btn:hover { opacity: 0.88; }
+
+    .award-item { padding: 0.9rem 0; border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 46px 1fr; gap: 0.75rem; }
+    .award-item:last-child { border-bottom: none; }
+    .award-year { font-size: 0.78rem; color: var(--ink-light); font-weight: 500; padding-top: 0.1rem; }
+    .award-title { font-family: var(--serif); font-size: 0.95rem; color: var(--ink); margin-bottom: 0.1rem; line-height: 1.4; }
+    .award-desc { font-size: 0.82rem; color: var(--ink-light); }
+
+    .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .media-card { border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; background: var(--cream); }
+    .media-outlet { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.4rem; }
+    .media-card h3 { font-family: var(--serif); font-size: 0.92rem; line-height: 1.4; margin-bottom: 0.4rem; }
+    .media-card a { font-size: 0.8rem; color: var(--terra); text-decoration: none; }
+
+    .profiles-grid { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.5rem; }
+    .profile-link { display: flex; align-items: center; gap: 0.6rem; padding: 0.7rem 1.1rem;
+      border: 1px solid var(--border); border-radius: 8px; background: var(--sand);
+      text-decoration: none; color: var(--ink-mid); font-size: 0.875rem; transition: all 0.2s; }
+    .profile-link:hover { border-color: var(--terra); color: var(--terra); }
+    .profile-link .pl-name { font-weight: 500; }
+    .profile-link .pl-desc { font-size: 0.76rem; color: var(--ink-light); }
+
+    footer { padding: 2.5rem 2rem; text-align: center; font-size: 0.82rem;
+      color: var(--ink-light); border-top: 1px solid var(--border); }
+
+    @media (max-width: 640px) {
+      header.hero .inner { grid-template-columns: 1fr; }
+      .hero-avatar { display: none; }
+      .hero-text h1 { font-size: 2rem; }
+      nav ul { gap: 1rem; }
+      nav a { font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="#" class="brand">Octavio Bramajo</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#cv">CV</a></li>
+      <li><a href="#media">Media</a></li>
+      <li><a href="#profiles">Profiles</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="about">
+  <div class="inner">
+    <div class="hero-text">
+      <p class="label">Postdoctoral Researcher</p>
+      <h1>Octavio<br>Bramajo</h1>
+      <p class="tagline">Demographer working on <strong>mortality, healthy aging, and health inequalities</strong>.</p>
+      <p class="affil">Institute for Evolutionary Medicine · University of Zurich, Switzerland</p>
+      <div class="hero-links">
+        <a href="mailto:onbramajo@gmail.com">✉ Email</a>
+        <a href="https://github.com/onbramajo" target="_blank">GitHub</a>
+        <a href="https://osf.io/e45hm/" target="_blank">OSF</a>
+        <a href="https://orcid.org/0000-0002-4148-6030" target="_blank">ORCID</a>
+        <a href="CV_Bramajo_2025_Short_Academic__4_.pdf" download>Download CV</a>
+      </div>
+    </div>
+    <div class="hero-avatar">OB</div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section>
+    <p class="label">About me</p>
+    <h2>Hey there. I'm Octavio, pleased to meet you!</h2>
+    <p>I am a postdoctoral researcher in the Anthropometrics and Historical Epidemiology Group at the Institute of Evolutionary Medicine, University of Zurich, Switzerland. Previously I was at the UTMB Sealy Center on Aging of the University of Texas Medical Branch, analyzing trends, causes, and inequalities in health and aging from an international perspective.</p>
+    <p>I earned my Ph.D. in Demography at the Centre d'Estudis Demogràfics (CED), Universitat Autònoma de Barcelona — cum laude with International Doctorate mention — sponsored by a FI-AGAUR doctoral grant. I also hold a Master's in Demography (UAB/Max Planck), a Master's in Social Demography (Universidad Nacional de Luján), a Bachelor's in Sociology (Universidad de Buenos Aires), and completed the European Doctoral School of Demography (EDSD).</p>
+    <p>My main interests are health and mortality, demographic and statistical methods applied to social science, social inequalities in aging, and the design of equitable pension and public health systems. I know I said health a lot in that sentence.</p>
+    <p>I have worked as a Population Data Analyst at ANSES (Social Security and Pension Bureau of Argentina) and have been appointed as consultant by the World Bank and the United Nations Population Fund, among other consulting work.</p>
+    <p>Outside research: sports (a lot), music (also a lot), films, coffee (probably more need than like), mate, random pop-culture references, and terrible jokes that people laugh at anyway. So nice of them.</p>
+  </section>
+
+  <section id="research">
+    <p class="label">Research</p>
+    <h2>What I work on</h2>
+    <p>My work sits at the intersection of demographic methods, epidemiology, and public health, with a focus on population-level patterns of mortality and healthy aging across time, space, and social groups.</p>
+    <div class="interests-grid">
+      <div class="interest-card">
+        <div class="icon">📊</div>
+        <h3>Mortality &amp; longevity trends</h3>
+        <p>Cause-specific mortality, life expectancy decomposition, birth cohort patterns across high-income countries.</p>
+      </div>
+      <div class="interest-card">
+        <div class="icon">🧠</div>
+        <h3>Healthy aging &amp; disability</h3>
+        <p>Dementia-free life expectancy, functional limitations, ADL/IADL trajectories and multistate modeling.</p>
+      </div>
+      <div class="interest-card">
+        <div class="icon">📐</div>
+        <h3>Demographic methods</h3>
+        <p>Multistate life tables, Age-Period-Cohort modeling, Sullivan method, Lexis surface visualization.</p>
+      </div>
+      <div class="interest-card">
+        <div class="icon">⚖️</div>
+        <h3>Health inequalities</h3>
+        <p>Educational, racial/ethnic, and socioeconomic disparities in mortality and aging — US, Europe, Latin America.</p>
+      </div>
+      <div class="interest-card">
+        <div class="icon">🌎</div>
+        <h3>Latin American demography</h3>
+        <p>Mortality trends in Argentina and Mexico, cause-of-death analysis, historical epidemiology.</p>
+      </div>
+      <div class="interest-card">
+        <div class="icon">🏥</div>
+        <h3>Historical epidemiology</h3>
+        <p>Swiss historical mortality, prenatal pandemic exposure effects, psychiatric and neurological outcomes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <p class="label">Publications</p>
+    <h2>Peer-reviewed articles</h2>
+    <p>See my <a href="https://osf.io/e45hm/" style="color:var(--terra)">OSF profile</a> and <a href="https://orcid.org/0000-0002-4148-6030" style="color:var(--terra)">ORCID</a> for the full list.</p>
+
+    <p class="pub-group-title">Published (English)</p>
+
+    <div class="pub-item">
+      <span class="pub-year">2026</span>
+      <div>
+        <p class="pub-title">Birth cohort patterns in U.S. mortality: evidence suggesting continued adverse trends</p>
+        <p class="pub-authors">Abrams L., Bramajo O., van Raalte A., Myrskylä M., Mehta N.</p>
+        <p class="pub-venue">Proceedings of the National Academy of Sciences (PNAS)</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1073/pnas.2519356123" target="_blank">doi.org/10.1073/pnas.2519356123</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2026</span>
+      <div>
+        <p class="pub-title">Age-specific trends in limitations of daily activities in American adults aged 50–84 by race and ethnicity, 2000–2018</p>
+        <p class="pub-authors">Bramajo O., Chakraborty M., O'Grady B., Mehta N.</p>
+        <p class="pub-venue">PLOS ONE</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1371/journal.pone.0340694" target="_blank">doi.org/10.1371/journal.pone.0340694</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2025</span>
+      <div>
+        <p class="pub-title">Remaining life expectancy with met and unmet care needs among aging Mexicans: the role of household family structures</p>
+        <p class="pub-authors">Cabrero-Castro E., Bramajo O., Calderón-Jaramillo M., Downer B., Cantú P.</p>
+        <p class="pub-venue">Innovation in Aging</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1093/geroni/igaf147" target="_blank">doi.org/10.1093/geroni/igaf147</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2025</span>
+      <div>
+        <p class="pub-title">Catching up with stagnation: cause-specific dynamics of change in life expectancy at age 65 in the United States, Canada and Latin America, 2000–2019</p>
+        <p class="pub-authors">Bramajo O., Mehta N., Myrskylä M.</p>
+        <p class="pub-venue">The Gerontologist</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1093/geront/gnaf214" target="_blank">doi.org/10.1093/geront/gnaf214</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2025</span>
+      <div>
+        <p class="pub-title">Education and age of decline in verbal memory across countries: evidence from the HRS, MHAS, and CHARLS</p>
+        <p class="pub-authors">Han C., Bramajo O., Downer B.</p>
+        <p class="pub-venue">Journal of Alzheimer's Disease Reports</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1177/25424823251351631" target="_blank">doi.org/10.1177/25424823251351631</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2025</span>
+      <div>
+        <p class="pub-title">Cardiovascular mortality and the growing life expectancy gap between the U.S. and other high-income countries</p>
+        <p class="pub-authors">Bramajo O., Mehta N.</p>
+        <p class="pub-venue">American Journal of Preventive Medicine</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1016/j.amepre.2025.02.002" target="_blank">doi.org/10.1016/j.amepre.2025.02.002</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2025</span>
+      <div>
+        <p class="pub-title">The role of birth cohorts in recent mortality trends among Mexicans aged 60+ in urban and rural areas</p>
+        <p class="pub-authors">Bramajo O., Zazueta-Borboa J.</p>
+        <p class="pub-venue">Canadian Studies on Population</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1007/s42650-025-00088-6" target="_blank">doi.org/10.1007/s42650-025-00088-6</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2024</span>
+      <div>
+        <p class="pub-title">Educational disparities in preventable deaths: do they explain the longevity gap between Mexico and Spain?</p>
+        <p class="pub-authors">Bramajo O., García-Guerrero V., Permanyer I.</p>
+        <p class="pub-venue">Journal of Aging and Health</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1177/08982643241303" target="_blank">doi.org/10.1177/08982643241303</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2024</span>
+      <div>
+        <p class="pub-title">Taking an age-period-cohort perspective to assess changes in the incidence of self-perceptions of aging over time</p>
+        <p class="pub-authors">Ayalon L., Bramajo O.</p>
+        <p class="pub-venue">Archives of Gerontology and Geriatrics</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1016/j.archger.2024.105716" target="_blank">doi.org/10.1016/j.archger.2024.105716</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2024</span>
+      <div>
+        <p class="pub-title">Decomposition of life expectancy differentials with (and without) chronic conditions by educational attainment in Spain</p>
+        <p class="pub-authors">Bramajo O., Zueras P., Rentería E., Permanyer I.</p>
+        <p class="pub-venue">Genus: Journal of Population Sciences</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1186/s41118-024-00220-5" target="_blank">doi.org/10.1186/s41118-024-00220-5</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2023</span>
+      <div>
+        <p class="pub-title">Lung cancer mortality trends among women across Spain: the role of birth cohorts in diverging regional patterns</p>
+        <p class="pub-authors">Bramajo O.</p>
+        <p class="pub-venue">Journal of Population Research</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1007/s12546-023-09323-w" target="_blank">doi.org/10.1007/s12546-023-09323-w</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2023</span>
+      <div>
+        <p class="pub-title">The race between mortality and morbidity: implications for the global distribution of health</p>
+        <p class="pub-authors">Permanyer I., Bramajo O.</p>
+        <p class="pub-venue">Population and Development Review</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1111/padr.12582" target="_blank">doi.org/10.1111/padr.12582</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2023</span>
+      <div>
+        <p class="pub-title">Perceived age discrimination in the second half of life: an examination of age, period, and cohort effects</p>
+        <p class="pub-authors">Ayalon L., Bramajo O.</p>
+        <p class="pub-venue">Innovation in Aging</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1093/geroni/igad094" target="_blank">doi.org/10.1093/geroni/igad094</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2022</span>
+      <div>
+        <p class="pub-title">Regional inequalities in life expectancy and lifespan variation by educational attainment in Spain, 2014–18</p>
+        <p class="pub-authors">Bramajo O., Permanyer I., Blanes A.</p>
+        <p class="pub-venue">Population, Space and Place</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1002/psp.2628" target="_blank">doi.org/10.1002/psp.2628</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2022</span>
+      <div>
+        <p class="pub-title">Estimating remaining life expectancy free of anxiety and depression in Argentina: trends and decomposition, 2005–18</p>
+        <p class="pub-authors">Bramajo O.</p>
+        <p class="pub-venue">REBEP (Brazilian Journal of Population Studies)</p>
+        <p class="pub-doi"><a href="https://doi.org/10.20947/S0102-3098a0199" target="_blank">doi.org/10.20947/S0102-3098a0199</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2022</span>
+      <div>
+        <p class="pub-title">An age-period-cohort approach to analyse late-life depression prevalence in six European countries, 2004–2016</p>
+        <p class="pub-authors">Bramajo O.</p>
+        <p class="pub-venue">European Journal of Population</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1007/s10680-022-09610-x" target="_blank">doi.org/10.1007/s10680-022-09610-x</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2022</span>
+      <div>
+        <p class="pub-title">Contribution of age-related effects to COVID-19 differences of fatality ratios in two Argentine provinces, March–August 2020</p>
+        <p class="pub-authors">Bramajo O., Bathory M.F.</p>
+        <p class="pub-venue">Cadernos de Saúde Coletiva</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1590/1414-462X202433010582" target="_blank">doi.org/10.1590/1414-462X202433010582</a></p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">2020</span>
+      <div>
+        <p class="pub-title">Mortality of disabled persons by age, sex and duration of disability in Argentina <span class="badge">equal authorship</span></p>
+        <p class="pub-authors">Grushka C., Bramajo O., Tibi L.</p>
+        <p class="pub-venue">International Social Security Review</p>
+        <p class="pub-doi"><a href="https://doi.org/10.1111/issr.12250" target="_blank">doi.org/10.1111/issr.12250</a></p>
+      </div>
+    </div>
+
+    <p class="pub-group-title">Under review</p>
+
+    <div class="pub-item">
+      <span class="pub-year">—</span>
+      <div>
+        <p class="pub-title">Trends in life expectancy with and without stroke history in Americans aged 50+ <span class="badge badge-r">R&amp;R</span></p>
+        <p class="pub-authors">Bramajo O., Chakraborty M., Lisabeth L., Mehta N.</p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">—</span>
+      <div>
+        <p class="pub-title">An international comparison of Alzheimer's disease mortality using rates of mortality improvement across birth cohorts</p>
+        <p class="pub-authors">Bramajo O.</p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">—</span>
+      <div>
+        <p class="pub-title">Adults under age 80 represented most of the life expectancy losses during the COVID-19 pandemic in Argentinean regions <span class="badge badge-r">R&amp;R</span></p>
+        <p class="pub-authors">Bathory F., Bramajo O.</p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">—</span>
+      <div>
+        <p class="pub-title">Fertility decline in India: an age-period-cohort analysis using Lexis surface visualization</p>
+        <p class="pub-authors">Das M., Bramajo O.</p>
+      </div>
+    </div>
+
+    <p class="pub-group-title">In preparation</p>
+
+    <div class="pub-item">
+      <span class="pub-year">—</span>
+      <div>
+        <p class="pub-title">A longitudinal analysis of late-life physical and cognitive disability onset by education in the United States and European regions</p>
+        <p class="pub-authors">Bramajo O., Callaway J., Strozza C.</p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">—</span>
+      <div>
+        <p class="pub-title">International birth cohort patterns in cancer mortality in high-income countries in the 21st century</p>
+        <p class="pub-authors">Bramajo O., Abrams L., Mehta N.</p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">—</span>
+      <div>
+        <p class="pub-title">From frontrunner in the Americas to laggard: causes behind Argentina's recent flattening in life expectancy gains</p>
+        <p class="pub-authors">Bramajo O., Bathory F.</p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">—</span>
+      <div>
+        <p class="pub-title">Negative health outcomes after exposure to the 1957 Asian Flu in Switzerland</p>
+        <p class="pub-authors">Bramajo O., Matthes K.</p>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">—</span>
+      <div>
+        <p class="pub-title">How much of the life expectancy gap by educational attainment in Spain is explained by early deaths?</p>
+        <p class="pub-authors">Bramajo O., Spijker J., Permanyer I.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="awards">
+    <p class="label">Awards &amp; distinctions</p>
+    <h2>Selected honors</h2>
+    <div>
+
+      <div class="award-item">
+        <span class="award-year">2025</span>
+        <div>
+          <p class="award-title">Juan de la Cierva Postdoctoral Fellowship — ranked 1st in Social Sciences</p>
+          <p class="award-desc">Ministry of Science, Education and Innovation, Spain · Two years · ~70,000 USD · Declined</p>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-year">2023</span>
+        <div>
+          <p class="award-title">Ph.D. Special Prize Award for cum laude dissertation</p>
+          <p class="award-desc">Universitat Autònoma de Barcelona</p>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-year">2022</span>
+        <div>
+          <p class="award-title">Mexican Government Excellence Scholarship for Foreigners</p>
+          <p class="award-desc">Three-month research stay at El Colegio de México</p>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-year">2021</span>
+        <div>
+          <p class="award-title">Jorge Somoza Award — best paper by young scholar</p>
+          <p class="award-desc">16th Argentine / 3rd International South Cone Population Conference</p>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-year">2021</span>
+        <div>
+          <p class="award-title">FI-AGAUR Doctoral Scholarship</p>
+          <p class="award-desc">Catalan Scholarship Agency / European Social Fund · ~60,000 USD</p>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-year">2020</span>
+        <div>
+          <p class="award-title">Czech Academy of Sciences Award — best presentation</p>
+          <p class="award-desc">11th Demographic Conference of Young Demographers, Prague</p>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-year">2019</span>
+        <div>
+          <p class="award-title">Max Planck Institute Studentship — European Doctoral School of Demography</p>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-year">2018</span>
+        <div>
+          <p class="award-title">Best Poster Award — 8th Latin American Population Conference</p>
+          <p class="award-desc">With Grushka C. and Tibi L. · Puebla, Mexico</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="cv">
+    <p class="label">Curriculum Vitae</p>
+    <h2>Download my CV</h2>
+    <p>Full academic CV including publications, grants, teaching, conference presentations, and consulting experience (updated January 2026).</p>
+    <a href="CV_Bramajo_2025_Short_Academic__4_.pdf" class="cv-btn" download>↓ Download CV (PDF)</a>
+  </section>
+
+  <section id="media">
+    <p class="label">Media &amp; outreach</p>
+    <h2>In the press</h2>
+    <p>Research coverage and public engagement. Add links here as they come!</p>
+    <div class="media-grid">
+      <div class="media-card">
+        <p class="media-outlet">Placeholder</p>
+        <h3>Add a media mention title here</h3>
+        <a href="#">Read article →</a>
+      </div>
+      <div class="media-card">
+        <p class="media-outlet">Placeholder</p>
+        <h3>Add another media mention here</h3>
+        <a href="#">Read article →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="profiles">
+    <p class="label">Profiles &amp; data</p>
+    <h2>Find me online</h2>
+    <div class="profiles-grid">
+      <a href="https://osf.io/e45hm/" target="_blank" class="profile-link">
+        <span><div class="pl-name">OSF</div><div class="pl-desc">Projects &amp; preprints</div></span>
+      </a>
+      <a href="https://github.com/onbramajo" target="_blank" class="profile-link">
+        <span><div class="pl-name">GitHub</div><div class="pl-desc">Code &amp; repositories</div></span>
+      </a>
+      <a href="https://orcid.org/0000-0002-4148-6030" target="_blank" class="profile-link">
+        <span><div class="pl-name">ORCID</div><div class="pl-desc">0000-0002-4148-6030</div></span>
+      </a>
+      <!-- Add Google Scholar URL when you have it -->
+      <a href="#" class="profile-link">
+        <span><div class="pl-name">Google Scholar</div><div class="pl-desc">Citations &amp; h-index</div></span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Octavio Bramajo · Institute for Evolutionary Medicine · University of Zurich</p>
+  <p style="margin-top:0.4rem;">Hosted on GitHub Pages · <a href="https://github.com/onbramajo" style="color:var(--terra)">github.com/onbramajo</a></p>
+</footer>
+
+</body>
+</html>
